@@ -17,7 +17,6 @@
   </v-sheet>
 </template>
 <script>
-
   export default {
     data: () => ({
       jobTitle: '',
