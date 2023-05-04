@@ -12,7 +12,6 @@
 .logo{
   width: 10%;
   height: auto;
-
 }
 .container{
   display: flex;
