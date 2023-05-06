@@ -2,7 +2,7 @@
   <v-app>
     <v-main>
       <v-container class="container" fluid >
-        <img src="src/assets/logo.png" class="logo"/>
+        <img src="@/assets/logo.png" class="logo"/>
         <MainPage />
       </v-container>
     </v-main>
