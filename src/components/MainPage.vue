@@ -103,6 +103,7 @@
       },
       submitForm(){
         this.isLoading=true;
+        console.log(process.env);
         generate(
           this.jobTitle,
           this.company,
