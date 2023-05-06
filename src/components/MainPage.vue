@@ -1,6 +1,6 @@
 <template>
   <v-sheet width="30%" class="mx-auto">
-    <v-form @submit.prevent="isLoading=true">
+    <v-form @submit.prevent="submitForm">
       <v-row dense>
         <v-col >
           <v-text-field
@@ -100,6 +100,20 @@
       handleDialog(){
         this.isLoading=false;
         this.generatedData=undefined;
+      },
+      submitForm(){
+        this.isLoading=true;
+        generate(
+          this.jobTitle,
+          this.company,
+          this.city+" , "+this.state,
+          this.startMonth+" "+this.startYear,
+          this.endMonth+" "+this.endYear,
+          this.description,
+        ).then((res) => {
+          if(res=="")return;
+          this.generatedData = res.split("\n");
+        })
       }
     },
     data: () => ({
@@ -117,20 +131,5 @@
       description: '',
       generatedData: undefined,
     }),
-    watch: {
-      isLoading (val) {
-        if (!val) return
-        generate(
-          this.jobTitle,
-          this.company,
-          this.city+" , "+this.state,
-          this.startMonth+" "+this.startYear,
-          this.endMonth+" "+this.endYear,
-          this.description,
-        ).then((res) => {
-          this.generatedData = res.split("\n");
-        })
-      },
-    },
   }
 </script>
