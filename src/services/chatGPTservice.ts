@@ -8,8 +8,6 @@ export default async function generate(
   description: string,
 ){
   const OPENAI_API_KEY = "";
-  console.log("Line 1",process.env.MY_TEST_KEY);
-  console.log("Line 2",window.process.env.VUE_APP_MY_TEST_KEY);
   const endpoint = 'https://api.openai.com/v1/chat/completions';
   const prompt = `Could you rewrite following experience into resume experience?\n. I have worked at ${company} as ${jobTitle} between ${startDate} and ${endDate} at ${location}. ${description}`;
   const requestBody = {
