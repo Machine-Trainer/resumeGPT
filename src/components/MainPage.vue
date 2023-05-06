@@ -76,6 +76,7 @@
         </v-col>
       </v-row>
       <v-textarea
+        v-model="description"
         label="Experience Description"
         hint="e.g. I worked as a software engineer on the Google Maps team."
       ></v-textarea>
@@ -119,6 +120,7 @@
       isLoading: false,
       monthData:monthData,
       yearData:yearData,
+      description: '',
       generatedData: "",
       rules: [
         value => {
@@ -130,9 +132,16 @@
     watch: {
       isLoading (val) {
         if (!val) return
-        generate().then((res) => {
+        generate(
+          this.jobTitle,
+          this.company,
+          this.city+" , "+this.state,
+          this.startMonth+"/"+this.startYear,
+          this.endMonth+"/"+this.endYear,
+          this.description,
+        ).then((res) => {
           this.generatedData = res
-          this.isLoading = false
+          // this.isLoading = false
         })
       },
     },
