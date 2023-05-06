@@ -4,11 +4,15 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
+  "homepage": "https://Machine-Trainer.github.io/resumeGPT/",
   "dependencies": {
     "@mdi/font": "7.0.96",
     "axios": "^1.4.0",
+    "gh-pages": "^5.0.0",
     "roboto-fontface": "*",
     "vue": "^3.2.0",
     "vuetify": "^3.0.0",
