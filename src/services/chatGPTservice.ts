@@ -7,7 +7,7 @@ export default async function generate(
   endDate: string,
   description: string,
 ){
-  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+  const OPENAI_API_KEY = process.env.VUE_APP_OPENAI_API_KEY;
   console.log(OPENAI_API_KEY);
   const endpoint = 'https://api.openai.com/v1/chat/completions';
   const prompt = `Could you rewrite following experience into resume experience?\n. I have worked at ${company} as ${jobTitle} between ${startDate} and ${endDate} at ${location}. ${description}`;
