@@ -7,7 +7,6 @@
             v-model="jobTitle"
             label="Job Title"
             hint="e.g. Software Engineer"
-            :rules="rules"
             autocomplete="on"
           ></v-text-field>
         </v-col>
@@ -16,7 +15,6 @@
             v-model="company"
             label="Company"
             hint="e.g. Google"
-            :rules="rules"
             autocomplete="on"
           ></v-text-field>
         </v-col>
@@ -27,7 +25,6 @@
             v-model="city"
             label="City"
             hint="e.g. San Francisco"
-            :rules="rules"
             autocomplete="on"
           ></v-text-field>
         </v-col>
@@ -36,7 +33,6 @@
             v-model="state"
             label="State"
             hint="e.g. California"
-            :rules="rules"
             autocomplete="on"
           ></v-text-field>
         </v-col >
@@ -83,30 +79,28 @@
       <v-btn type="submit"
             block
             class="mt-2"
-            :disabled="isLoading"
+            :disabled="!jobTitle || !company || !description"
             :loading="isLoading"
       >Generate</v-btn>
     </v-form>
 
-    <LoadDialog v-model="isLoading" :message="generatedData"/>
+    <LoadDialog v-model="isLoading" :message="generatedData" @dialogConfirmed="handleDialog"/>
   </v-sheet>
 </template>
 <script>
   import monthData from '@/data/month.json'
   import yearData from '@/data/year.json'
   import LoadDialog from '@/components/LoadDialog.vue'
-  import TypeWriter from '@/components/TypeWriter.vue'
   import generate from '@/services/chatGPTservice.ts'
   export default {
     components: {
-      TypeWriter,
       LoadDialog,
     },
     methods: {
-      handleClick () {
-        this.isLoading = true
-        generate()
-      },
+      handleDialog(){
+        this.isLoading=false;
+        this.generatedData=undefined;
+      }
     },
     data: () => ({
       jobTitle: '',
@@ -121,13 +115,7 @@
       monthData:monthData,
       yearData:yearData,
       description: '',
-      generatedData: "",
-      rules: [
-        value => {
-          return true
-          return 'You must enter this field.'
-        },
-      ],
+      generatedData: undefined,
     }),
     watch: {
       isLoading (val) {
@@ -136,12 +124,11 @@
           this.jobTitle,
           this.company,
           this.city+" , "+this.state,
-          this.startMonth+"/"+this.startYear,
-          this.endMonth+"/"+this.endYear,
+          this.startMonth+" "+this.startYear,
+          this.endMonth+" "+this.endYear,
           this.description,
         ).then((res) => {
-          this.generatedData = res
-          this.isLoading = false
+          this.generatedData = res.split("\n");
         })
       },
     },

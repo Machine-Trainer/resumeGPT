@@ -7,13 +7,13 @@ export default async function generate(
   endDate: string,
   description: string,
 ){
-  console.log(jobTitle, company, location, startDate, endDate, description);
-  const OPENAI_API_KEY = '';
+  const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
+  console.log(OPENAI_API_KEY);
   const endpoint = 'https://api.openai.com/v1/chat/completions';
-
+  const prompt = `Could you rewrite following experience into resume experience?\n. I have worked at ${company} as ${jobTitle} between ${startDate} and ${endDate} at ${location}. ${description}`;
   const requestBody = {
     model: 'gpt-3.5-turbo',
-    messages: [{ role: 'user', content: 'Say this is a test!' }],
+    messages: [{ role: 'user', content: prompt }],
     temperature: 0.7,
   };
 
@@ -27,7 +27,6 @@ export default async function generate(
     return response.data.choices[0].message.content;
     // do something with the response data
   } catch (error) {
-    console.log(error);
     return "";
   }
 }
