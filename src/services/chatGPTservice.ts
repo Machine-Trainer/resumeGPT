@@ -1,6 +1,14 @@
 import axios from 'axios';
-export default async function generate(){
-  const OPENAI_API_KEY = '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';
+export default async function generate(
+  jobTitle: string,
+  company: string,
+  location: string,
+  startDate: string,
+  endDate: string,
+  description: string,
+){
+  console.log(jobTitle, company, location, startDate, endDate, description);
+  const OPENAI_API_KEY = '';
   const endpoint = 'https://api.openai.com/v1/chat/completions';
 
   const requestBody = {
@@ -19,6 +27,7 @@ export default async function generate(){
     return response.data.choices[0].message.content;
     // do something with the response data
   } catch (error) {
-    return error;
+    console.log(error);
+    return "";
   }
 }
