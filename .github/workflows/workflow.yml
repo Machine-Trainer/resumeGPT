@@ -1,4 +1,4 @@
- name: Deploy to GitHub Pages
-  env:
-    VUE_APP_API_KEY: ${{ secrets.SECRET_KEY }}
-  run: npm run deploy
+name: Deploy to GitHub Pages
+env:
+  VUE_APP_API_KEY: ${{ secrets.SECRET_KEY }}
+run: npm run deploy
