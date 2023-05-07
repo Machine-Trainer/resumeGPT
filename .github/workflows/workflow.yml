@@ -25,20 +25,16 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
         restore-keys: |
           ${{ runner.os }}-node-
+
     - name: Install dependencies
       run: npm install
 
     - name: Build the project
       run: npm run build
-      env:
-        VUE_APP_API_KEY: ${{ secrets.VUE_APP_API_KEY }}
 
     - name: Deploy to GitHub Pages 🚀
       uses: JamesIves/github-pages-deploy-action@4.1.5
       with:
         branch: gh-pages
         folder: dist
-        token: ${{ secrets.GH_PAGES_PAT }}
-        repository_name: Machine-Trainer/resumeGPT
-        git_config_email: weijianzeng2020@gmail.com
-        git_config_name: Machine-Trainer
+        token: ${{ secrets.GITHUB_TOKEN }}
