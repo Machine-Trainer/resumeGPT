@@ -1,4 +1,12 @@
-name: Deploy to GitHub Pages
-env:
-  VUE_APP_API_KEY: ${{ secrets.SECRET_KEY }}
-run: npm run deploy
+name: Set Secret
+
+on:
+  workflow_dispatch:
+
+jobs:
+  set-secret:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set secret
+        run: echo "${{ secrets.VUE_APP_API_KEY }}" >> $GITHUB_ENV
