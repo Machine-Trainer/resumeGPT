@@ -38,4 +38,7 @@ jobs:
       with:
         branch: gh-pages
         folder: dist
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GH_PAGES_PAT }}
+        repository_name: Machine-Trainer/resumeGPT
+        git_config_email: weijianzeng2020@gmail.com
+        git_config_name: Machine-Trainer
