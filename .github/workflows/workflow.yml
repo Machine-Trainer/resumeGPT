@@ -39,4 +39,4 @@ jobs:
       with:
         branch: gh-pages
         folder: dist
-        token: ${{ secrets.VUE_APP_API_KEY }}
+        token: ${{ secrets.GITHUB_TOKEN }}
