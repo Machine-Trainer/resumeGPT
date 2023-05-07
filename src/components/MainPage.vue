@@ -103,7 +103,8 @@
       },
       submitForm(){
         this.isLoading=true;
-        console.log(process.env.VUE_APP_API_KEY);
+        const apiKey = process.env.VUE_APP_API_KEY;
+        console.log(apiKey);
         generate(
           this.jobTitle,
           this.company,
