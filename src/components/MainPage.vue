@@ -105,6 +105,7 @@
         this.isLoading=true;
         const apiKey = process.env.VUE_APP_API_KEY;
         console.log(apiKey);
+        console.log(process.env.token)
         generate(
           this.jobTitle,
           this.company,
