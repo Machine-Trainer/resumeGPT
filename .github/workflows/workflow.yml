@@ -37,4 +37,5 @@ jobs:
       with:
         branch: gh-pages
         folder: dist
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ secrets.GH_PAGES_PAT }}
+        repository_name: Machine-Trainer/resumeGPT
