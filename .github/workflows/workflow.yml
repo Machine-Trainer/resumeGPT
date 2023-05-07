@@ -14,9 +14,6 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set environment variable
-        run: echo "VUE_APP_API_KEY=${{ secrets.VUE_APP_API_KEY }}" >> $GITHUB_ENV
-
-      - name: Deploy to GitHub Pages
+        run: echo "VUE_APP_API_KEY=$VUE_APP_API_KEY" >> $GITHUB_ENV
         env:
           VUE_APP_API_KEY: ${{ secrets.VUE_APP_API_KEY }}
-        run: npm run deploy
